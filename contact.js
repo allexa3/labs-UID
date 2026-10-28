@@ -133,3 +133,38 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+
+
+const USER = "admin", PASS = "admin1234";
+
+const chat = document.getElementById("chat");
+const msg = document.getElementById("chat-msg");
+const user = document.getElementById("chat-user");
+const pass = document.getElementById("chat-pass");
+const fields = chat.querySelectorAll("input, button");
+
+document.getElementById("chat-head").onclick = () => chat.classList.add("open");
+document.getElementById("chat-icon").onclick = e => {
+    e.stopPropagation();
+    chat.classList.toggle("open");
+};
+document.getElementById("chat-close").onclick = e => {
+    e.stopPropagation();
+    chat.classList.remove("open");
+};
+
+document.getElementById("chat-btn").onclick = () => {
+    fields.forEach(f => f.disabled = true);
+    chat.classList.add("busy");
+
+    setTimeout(() => {
+        const ok = user.value === USER && pass.value === PASS;
+        msg.className = ok ? "" : "err";
+        msg.innerHTML = ok
+            ? '<i class="ic ic-check"></i> Authentication successfull !'
+            : '<i class="ic ic-warn"></i> Invalid username or password';
+        fields.forEach(f => f.disabled = ok);
+        chat.classList.remove("busy");
+    }, 3000);
+};
