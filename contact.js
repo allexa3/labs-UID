@@ -144,6 +144,7 @@ const user = document.getElementById("chat-user");
 const pass = document.getElementById("chat-pass");
 const fields = chat.querySelectorAll("input, button");
 
+
 document.getElementById("chat-head").onclick = () => chat.classList.add("open");
 document.getElementById("chat-icon").onclick = e => {
     e.stopPropagation();
